@@ -12,5 +12,15 @@ const loginFormHandler = async (event) => {
             body: JSON.stringify({ email, password}),
             headers: { 'Content-Type': 'application/json' },
         });
-    }
-}
+        
+        if (response.ok) {
+            document.location.replace('/');
+          } else {
+            alert('Failed to log in');
+          }
+        }
+      };
+      
+      document
+        .querySelector('.login-form')
+        .addEventListener('submit', loginFormHandler);
