@@ -36,4 +36,4 @@ class Blogpost extends Model {}
         }
     );
 
-module.exports = Post;
+module.exports = Blogpost;

@@ -4,7 +4,7 @@ const {
     Blogpost,
     Comments,
     User
-} = require('.../../models');
+} = require('../../models');
 
 const withAuth = require('../../utils/auth');
 //i need to get all of the blog comments
@@ -18,19 +18,22 @@ router.get("/", (req, res) => {
 });
 
 //then i need to get comments from 1 blogpost
+
 router.get("/", (req, res) => {
-    Comments.findAll({ where: { id: req.params.id, } })
+  const { id } = req.query;
+  Comments.findAll({ where: { id } })
     .then((commentsData) => {
-        if (commentsData.length === 0) {
-          res.status(404).json({ message: `No comment` });
-          return;
-        }
-        res.status(200).json(commentsData);
-      })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
-  });
+      if (commentsData.length === 0) {
+        res.status(404).json({ message: `No comment` });
+        return;
+      }
+      res.status(200).json(commentsData);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
+
 //then need to create a comments
 router.post('/', withAuth, (req, res) => {
     if (req.session) {

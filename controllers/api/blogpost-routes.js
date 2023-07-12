@@ -4,7 +4,7 @@ const {
     Blogpost,
     Comments,
     User
-} = require('.../../models');
+} = require('../../models');
 
 const withAuth = require('../../utils/auth');
 
@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
                     attributes: ["username"],
                 },
                 {
-                    model: Comment,
+                    model: Comments,
                     attributes: ["id", "comments_text", "Blogpost_id", "user_id", "created_at"],
                     include: {
                         model: User,

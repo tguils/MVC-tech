@@ -40,4 +40,4 @@ class Comments extends Model {}
         }
     );
 
-module.exports = Comment;
+module.exports = Comments;
