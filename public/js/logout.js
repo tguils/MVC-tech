@@ -12,5 +12,5 @@ const logout = async () => {
       alert('Failed to log out');
     }
   };
-  
+  //make sure to add document items in handlbars to coincide with all queryselectors 
   document.querySelector('#logout').addEventListener('click', logout);
