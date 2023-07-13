@@ -8,7 +8,7 @@ const {
 
 
 router.get('/', (req, res) => {
-    Post.findAll({
+    Blogpost.findAll({
             attributes: [
                 'id',
                 'title',
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
             ]
         })
         .then(BlogpostData => {
-            const posts = BlogpostData.map(post => post.get({
+            const posts = BlogpostData.map(Blogpost => Blogpost.get({
                 plain: true
             }));
 
@@ -45,8 +45,8 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/post/:id', (req, res) => {
-    Post.findOne({
+router.get('/Blogpost/:id', (req, res) => {
+    Blogpost.findOne({
             where: {
                 id: req.params.id
             },
