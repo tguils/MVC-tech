@@ -5,4 +5,4 @@ async function createPostFunction(event) {
 }
 
 
-document.querySelector('#create-new-post').addEventListener('submit', createPostFunction);
+document.querySelector('#create-new-post').addEventListener('click', createPostFunction);
