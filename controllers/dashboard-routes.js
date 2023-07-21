@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const {
     Blogpost,
     User,
-    Comments
+    Comment
 } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -20,8 +20,8 @@ router.get('/', withAuth, (req, res) => {
                 'created_at'
             ],
             include: [{
-                    model: Comments,
-                    attributes: ['id', 'comments_text', 'Blogpost_id', 'user_id', 'created_at'],
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'Blogpost_id', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -60,8 +60,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 'created_at'
             ],
             include: [{
-                    model: Comments,
-                    attributes: ['id', 'comments_text', 'Blogpost_id', 'user_id', 'created_at'],
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'Blogpost_id', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']

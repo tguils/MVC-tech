@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const {
     Blogpost,
-    Comments,
+    Comment,
     User
 } = require('../../models');
 
@@ -21,8 +21,8 @@ router.get("/", (req, res) => {
                     attributes: ["username"],
                 },
                 {
-                    model: Comments,
-                    attributes: ["id", "comments_text", "Blogpost_id", "user_id", "created_at"],
+                    model: Comment,
+                    attributes: ["id", "comment_text", "Blogpost_id", "user_id", "created_at"],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -49,7 +49,7 @@ router.get("/:id", (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ["id", "comments_text", "Blogpost_id", "user_id", "created_at"],
+                    attributes: ["id", "comment_text", "Blogpost_id", "user_id", "created_at"],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -75,7 +75,7 @@ router.get("/:id", (req, res) => {
 router.post("/", withAuth, (req, res) => {
     Blogpost.create({
             title: req.body.title,
-            content: req.body.Blogpost_content,
+            content: req.body.post_content,
             user_id: req.session.user_id
         })
         .then((BlogpostData) => res.json(BlogpostData))

@@ -2,13 +2,13 @@ const router = require('express').Router();
 
 const {
     Blogpost,
-    Comments,
+    Comment,
     User
 } = require('../../models');
 
-const withAuth = require('../../utils/auth');
 
-//i need to get all of the users
+
+
 router.get('/', (req, res) => {
     User.findAll({
             attributes: {
