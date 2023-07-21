@@ -1,0 +1,282 @@
+/* Palette Sourced from: https://colorhunt.co/palette/f4e0b9a8a1967d7463fe0000 */
+
+/*  Variables */
+
+:root {
+    --primary-brand-color: #F4F2DE;
+    --gray: #7D7463;
+    --light-cream: #ccc;
+    --peach: #F4E0B9;
+    --button: #A1CCD1;
+    --button-hover: #7C9D96;
+    --dark-gray: #A8A196;
+    --black: #000;
+    --alert-red: #FE0000;
+    --alert-red-hover: #ff643d;
+    --light-orange: #fff5eb;
+}
+
+/* HTML Element Resets */
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--gray);
+    background-color: var(--primary-brand-color);
+}
+
+a {
+    color: var(--primary-brand-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color .1s;
+}
+
+a:hover {
+    color: var(--peach);
+}
+
+
+button {
+    background-color: var(--button);
+    border: 0;
+    padding: 1%;
+    color: white;
+    font-weight: bold;
+    transition: background-color .1s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+textarea,
+input {
+    padding: 1%;
+    border-radius: 5px;
+    border: 1px solid var(--light-cream);
+    
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+    border: 1px solid var(--button-hover);
+}
+
+textarea {
+    min-width: 30%;
+    min-height: 100px;
+}
+
+.text-area {
+    width: 80%;
+}
+
+form div {
+    margin: 2%;
+}
+
+form label {
+    display: block;
+    text-align: left;
+    margin-left: 2%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
+    background-color: var(--dark-gray);
+    font-size: 20px;
+}
+
+header h1 {
+    font-size: 1em;
+}
+
+
+main {
+    flex: 1;
+    padding: 2% 4%;
+    /* background-color: var(--primary-brand-color); */
+}
+
+/* Global Class */
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Main Page styles */
+
+.login-page,
+.sign-in-page,
+.new-form-page{
+    border: 3px solid var(--dark-gray);
+    padding-bottom: 10px;
+}
+
+.login-header,
+.form-header {
+    padding: 10px;
+    background-color: var(--dark-gray);
+}
+
+.login-header h1,
+.login-header h2,
+.form-header h1 {
+    color: var(--primary-brand-color);
+    font-size: 30px;
+}
+
+.sign-up-link,
+.login-link {
+    padding-left: 10px;
+    font-size: 20px;
+    color: var(--dark-gray);
+}
+
+/* .info-section,
+.content-section,
+.form-wrapper,
+ {
+    padding-left: 10px;
+} */
+
+
+/* Blogposts */
+
+.post-name {
+    padding-top: 10px;
+}
+
+.post-title-section {
+    padding-top: 10px;
+}
+
+.page-wrapper {
+    padding-top: 10px;
+}
+
+.title-name {
+    background-color: var(--primary-brand-color);
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+    padding: 0px 10px;
+    border-style: double;
+}
+
+.post-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.post {
+    margin-bottom: 2%;
+    line-height: 150%;
+    border: 3px solid var(--black);
+}
+
+.post .title span {
+    font-style: italic;
+    font-size: 90%;
+    color: #7d7d7d;
+}
+
+/*  Buttons and Links   */
+
+.go-back {
+    color: var(--dark-gray);
+}
+
+.go-back:hover {
+    color: var(--black);
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 100%;
+    font-weight: bold;
+    transition: color .1s;
+    margin-left: 16px;
+    color: var(--primary-brand-color);
+}
+
+.btn-logout:hover {
+    background: none;
+    color: var(--peach);
+}
+
+.delete-post-btn {
+    background-color: var(--alert-red);
+}
+
+.delete-post-btn:hover {
+    background-color: var(--alert-red-hover);
+}
+
+
+/* Postss */
+
+.new-post-form input {
+    width: 300px;
+}
+
+
+.logout {
+    padding: 5px 15px;
+}
+
+
+.new-post-section {
+    display: flex;
+    justify-content: center;
+}
+
+#create-new-post {
+    width: 15%;
+}
+
+.login-form,
+.signup-form,
+.post-content,
+.post-title-section {
+    padding: 10px 10px 0px 0px;
+}
+
+.text-area,
+.login-signup-btn,
+.btn,
+#post-title {
+    width: 100%;
+}
+
+.info-section {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--dark-gray);
+}
