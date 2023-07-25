@@ -1,4 +1,4 @@
--- Active: 1689184242516@@127.0.0.1@3306@tech_db
+-- Active: 1690231502616@@127.0.0.1@3306@tech_db
 DROP DATABASE IF EXISTS tech_db;
 
 CREATE DATABASE tech_db;

@@ -1,10 +1,10 @@
 const User = require('./User');
-const Blogpost = require('./Blogpost');
+const Post = require('./Blogpost');
 const Comment = require('./Comment');
 
 
-//add onDeletes to any of these? need to look up where to add
-User.hasMany(Blogpost, {
+
+User.hasMany(Post, {
     foreignKey: 'user_id',
 });
 
@@ -16,16 +16,16 @@ Comment.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
-Comment.belongsTo(Blogpost, {
-    foreignKey: 'Blogpost_id',
+Comment.belongsTo(Post, {
+    foreignKey: 'post_id',
 });
 
-Blogpost.belongsTo(User, {
-    foreignKey: 'user-id',
+Post.belongsTo(User, {
+    foreignKey: 'user_id',
 });
 
-Blogpost.hasMany(Comment, {
-    foreignKey: 'blogpost-id',
+Post.hasMany(Comment, {
+    foreignKey: 'post_id',
 });
 
-module.exports = { User, Comment, Blogpost };
+module.exports = { User, Comment, Post };

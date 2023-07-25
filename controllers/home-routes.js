@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
+
 const {
     User,
     Post,
@@ -9,40 +10,40 @@ const {
 
 router.get('/', (req, res) => {
     Post.findAll({
-            attributes: [
-                'id',
-                'title',
-                'content',
-                'created_at'
-            ],
-            include: [{
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-                    include: {
-                        model: User,
-                        attributes: ['username']
-                    }
-                },
-                {
+        attributes: [
+            'id',
+            'title',
+            'content',
+            'created_at'
+        ],
+        include: [{
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
                     model: User,
                     attributes: ['username']
                 }
-            ]
-        })
-        .then(PostData => {
-            const posts = PostData.map(post => post.get({
-                plain: true
-            }));
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(PostData => {
+        const posts = PostData.map(post => post.get({
+            plain: true
+        }));
 
-            res.render('homepage', {
-                posts,
-                loggedIn: req.session.loggedIn
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
+        res.render('homepage', {
+            posts,
+            loggedIn: req.session.loggedIn
         });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 router.get('/post/:id', (req, res) => {
@@ -73,7 +74,7 @@ router.get('/post/:id', (req, res) => {
         .then(PostData => {
             if (!PostData) {
                 res.status(404).json({
-                    message: 'Not found'
+                    message: 'No post found with this id'
                 });
                 return;
             }
@@ -113,8 +114,8 @@ router.get('/signup', (req, res) => {
 
 
 router.get('*', (req, res) => {
-    res.status(404).send("error");
-  
+    res.status(404).send("Can't go there!");
+
 })
 
 
