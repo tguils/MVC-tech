@@ -1,16 +1,19 @@
-const BlogpostId = document.querySelector('input[name="Blogpost-id"]').value;
-//make sure to add document items in handlbars to coincide with all queryselectors 
-const commentFunction = async (event) => {
-    event.preventDefault();
-    const comments = document.querySelector('textarea[name="comments-body"]').value.trim();
-    console.log(comments);
 
-    if (comments) {
-        const response = await fetch('/api/comments', {
+
+async function commentFunction(event) {
+    event.preventDefault();
+    const comment_text = document.querySelector('textarea[name="comment-body"]').value.trim();
+    
+ const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+
+    if (comment_text) {
+        const response = await fetch('/api/comment', {
             method: 'POST',
             body: JSON.stringify({
-                comments: comments,
-                BlogpostId: BlogpostId,
+                post_id,
+                comment_text
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -21,9 +24,7 @@ const commentFunction = async (event) => {
         } else {
             alert(response.statusText);
         }
-    };
-} 
-
-if(document.querySelector('.comment-form') !=null) {  
-    document.querySelector('.comment-form').addEventListener('submit', commentFunction);
+    }
 }
+
+document.querySelector('.comment-form').addEventListener('submit', commentFunction);

@@ -1,20 +1,24 @@
-//make sure to add document items in handlbars to coincide with all queryselectors 
-const editFunction = async (event) => {
+async function editFunction(event) {
     event.preventDefault();
-    const title = document.querySelector('input[name="Blogpost-title"]').value;
-    const content = document.querySelector('textarea[name="Blogpost-content"]').value;
 
-    const response = await fetch(`/api/Blogpost/${id}`, {
+    const title = document.querySelector('input[name="post-title"]').value;
+    const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
+    const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            BlogpostId: id,
             title,
-            content,
+            post_content
         }),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json'
+        }
     });
     if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.replace('/dashboard');
     } else {
         alert("error!");
     }

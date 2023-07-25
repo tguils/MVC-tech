@@ -3,10 +3,10 @@
 const newpostForm = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('input[name="Blogpost-title"]').value;
-    const content = document.querySelector('textarea[name="Blogpost-content"]').value;
+    const title = document.querySelector('input[name="post-title"]').value;
+    const content = document.querySelector('textarea[name="post-content"]').value;
 
-    const response = await fetch('/api/Blogpost', {
+    const response = await fetch('/api/post', {
         method: 'POST',
         body: JSON.stringify({
             title,
@@ -21,4 +21,4 @@ const newpostForm = async (event) => {
     }
 };
 
-document.querySelector('#newpost-form').addEventListener('submit', newpostForm);
+document.querySelector('.new-post-form').addEventListener('submit', newpostForm);

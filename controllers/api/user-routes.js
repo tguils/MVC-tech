@@ -1,14 +1,14 @@
 const router = require('express').Router();
 
 const {
-    Blogpost,
-    Comments,
+    Post,
+    Comment,
     User
 } = require('../../models');
 
-const withAuth = require('../../utils/auth');
 
-//i need to get all of the users
+
+
 router.get('/', (req, res) => {
     User.findAll({
             attributes: {
@@ -32,14 +32,14 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Blogpost,
+                    model: Post,
                     attributes: ['id', 'title', 'content', 'created_at']
                 },
                 {
                     model: Comments,
                     attributes: ['id', 'comments_text', 'created_at'],
                     include: {
-                        model: Blogpost,
+                        model: Post,
                         attributes: ['title']
                     }
                 }

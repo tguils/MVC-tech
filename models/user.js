@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
-    checkPassword(loginPW) {
-        return bcrypt.compareSync(loginPW, this.password);
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
     }
 }
 
@@ -18,8 +18,8 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
+            
         },
         password: {
             type: DataTypes.STRING,
@@ -35,19 +35,19 @@ User.init(
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
-            async beforeUpdate(updateUserData) {
-                updateUserData.password = await bcrypt.hash(
+            async beforeUpdate(updatedUserData) {
+                updatedUserData.password = await bcrypt.hash(
                     updateUserData.password,
                     10
                 );
                 return updateUserData;
-            },
+            }
         },
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'user'
-    });
+    })
 //utilized this https://plainenglish.io/blog/password-encryption-using-bcrypt-sequelize-and-nodejs-fb9198634ee7 and https://stackoverflow.com/questions/48798372/beforecreate-hook-for-postgre-not-hashing-password-using-bcryptjs   
 module.exports = User;

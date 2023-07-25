@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 const {
-    Blogpost,
-    Comments,
+    Post,
+    Comment,
     User
 } = require('../../models');
 
@@ -11,7 +11,7 @@ const withAuth = require('../../utils/auth');
 
 //i need to get all of the blog posts
 router.get("/", (req, res) => {
-    Blogpost.findAll({
+    Post.findAll({
             attributes: ["id", "content", "title", "created_at"],
             order: [
                 ["created_at", "DESC"]
@@ -21,8 +21,8 @@ router.get("/", (req, res) => {
                     attributes: ["username"],
                 },
                 {
-                    model: Comments,
-                    attributes: ["id", "comments_text", "Blogpost_id", "user_id", "created_at"],
+                    model: Comment,
+                    attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
                 },
             ],
         })
-        .then((BlogpostData) => res.json(BlogpostData))
+        .then((PostData) => res.json(PostData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
 });
 //then i need to get a single post
 router.get("/:id", (req, res) => {
-    Blogpost.findOne({
+    Post.findOne({
             where: {
                 id: req.params.id,
             },
@@ -49,7 +49,7 @@ router.get("/:id", (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ["id", "comments_text", "Blogpost_id", "user_id", "created_at"],
+                    attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -57,14 +57,14 @@ router.get("/:id", (req, res) => {
                 },
             ],
         })
-        .then((BlogpostData) => {
-            if (!BlogpostData) {
+        .then((PostData) => {
+            if (!PostData) {
                 res.status(404).json({
                     message: "Not found"
                 });
                 return;
             }
-            res.json(BlogpostData);
+            res.json(PostData);
         })
         .catch((err) => {
             console.log(err);
@@ -73,12 +73,12 @@ router.get("/:id", (req, res) => {
 });
 //then need to create a post
 router.post("/", withAuth, (req, res) => {
-    Blogpost.create({
+    Post.create({
             title: req.body.title,
-            content: req.body.Blogpost_content,
+            content: req.body.content,
             user_id: req.session.user_id
         })
-        .then((BlogpostData) => res.json(BlogpostData))
+        .then((PostData) => res.json(PostData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
@@ -87,22 +87,22 @@ router.post("/", withAuth, (req, res) => {
 
 //then need to be able to update the post
 router.put("/:id", withAuth, (req, res) => {
-    Blogpost.update({
+    Post.update({
             title: req.body.title,
-            content: req.body.Blogpost_content,
+            content: req.body.Post_content,
         }, {
             where: {
                 id: req.params.id,
             },
         })
-        .then((BlogpostData) => {
-            if (!BlogpostData) {
+        .then((PostData) => {
+            if (!PostData) {
                 res.status(404).json({
                     message: "Error"
                 });
                 return;
             }
-            res.json(BlogpostData);
+            res.json(PostData);
         })
         .catch((err) => {
             console.log(err);
@@ -111,19 +111,19 @@ router.put("/:id", withAuth, (req, res) => {
 });
 //the need to delete the post
 router.delete("/:id", withAuth, (req, res) => {
-    Blogpost.destroy({
+    Post.destroy({
             where: {
                 id: req.params.id,
             },
         })
-        .then((BlogpostData) => {
-            if (!BlogpostData) {
+        .then((PostData) => {
+            if (!PostData) {
                 res.status(404).json({
                     message: "Not found!"
                 });
                 return;
             }
-            res.json(BlogpostData);
+            res.json(PostData);
         })
         .catch((err) => {
             console.log(err);
