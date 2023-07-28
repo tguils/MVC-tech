@@ -1,17 +1,17 @@
 async function editFunction(event) {
     event.preventDefault();
 
-    const title = document.querySelector('input[name="blogpost-title"]').value;
-    const Blogpost_content = document.querySelector('textarea[name="blogpost-content"]').value.trim();
-    const Blogpost_id = window.location.toString().split('/')[
+    const title = document.querySelector('input[name="post-title"]').value;
+    const post_content = document.querySelector('textarea[name="post-content"]').value.trim();
+    const post_id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/api/posts/${Blogpost_id}`, {
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
         body: JSON.stringify({
             title,
-            Blogpost_content
+            post_content
         }),
         headers: {
             'Content-Type': 'application/json'

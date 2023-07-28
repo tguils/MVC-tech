@@ -29,7 +29,7 @@ Comment.init({
             key: 'id'
         }
     },
-    Blogpost_id: {
+    post_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
