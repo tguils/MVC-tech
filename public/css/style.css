@@ -238,6 +238,13 @@ main {
     background-color: var(--alert-red-hover);
 }
 
+.create-btn {
+    color: var(--gray);
+}
+
+.create-btn:hover {
+    color: var(--black);
+}
 
 /* Postss */
 
