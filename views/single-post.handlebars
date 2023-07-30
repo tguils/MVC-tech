@@ -1,7 +1,7 @@
 <a href="/dashboard" class="go-back"> &larr; Back to dashboard</a>
 <br>
 
-{{> post-info post}}
+{{> postinfo post}}
 
 {{#if loggedIn}}
 <form class="comment-form">
@@ -18,5 +18,5 @@
 {{> comments post.comments}}
 
 {{#if loggedIn}}
-<script src="/public/js/comment.js"></script>
+<script src="/js/comment.js"></script>
 {{/if}}
